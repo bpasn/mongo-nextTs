@@ -7,5 +7,5 @@ import { creatrUserHandler } from '../controllers/user.controller'
 
 const route = express.Router()
 
-route.post('api/users',validateResource(createUserSchema), creatrUserHandler)
+route.post('/api/users',validateResource(createUserSchema), creatrUserHandler)
 export default route

@@ -2,8 +2,15 @@ import { NextFunction, Request, Response } from "express"
 
 import { AnyZodObject } from "zod"
 
-const validateResource = (schema: AnyZodObject) => (req: Request, res: Response, next: NextFunction) => {
+const validateResource = 
+(schema: AnyZodObject) => 
+(
+    req: Request, 
+    res: Response, 
+    next: NextFunction
+    ) => {
     try {
+        console.log("THIS")
         schema.parse({
             body: req.body,
             query: req.query,
@@ -11,7 +18,7 @@ const validateResource = (schema: AnyZodObject) => (req: Request, res: Response,
         });
         next()
     } catch (error) {
-        return res.status(400).json({ error:  error instanceof Error && error.message })
+        return res.status(400).json({ error:  error instanceof Error && JSON.parse(error.message) })
     }
 }
 
