@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 services/node_modules
+services/request_log
 /.pnp
 .pnp.js
 
