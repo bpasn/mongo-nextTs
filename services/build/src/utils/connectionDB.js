@@ -12,18 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = __importDefault(require("dotenv"));
-const path_1 = __importDefault(require("path"));
-dotenv_1.default.config({ path: path_1.default.resolve('.env') });
-const localDB = process.env.CONNECTION_STRING;
-const config_1 = require("config");
-const connectionTodb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const dbUri = (config_1.config.get);
-});
-// const connectDB = async () => {
-//   await Mongoose.connect(localDB, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   console.log("MongoDB Connected")
-// }
+const mongoose_1 = __importDefault(require("mongoose"));
+const config_1 = __importDefault(require("config"));
+function connectionDB() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const dbUri = config_1.default.get('connectionString');
+        try {
+            mongoose_1.default.set("strictQuery", true);
+            yield mongoose_1.default.connect(dbUri);
+            console.log("DATABASE IS CONNECTED..");
+        }
+        catch (error) {
+            console.log("DATABASE IS NOT CONNECTED..");
+            process.exit(1);
+        }
+    });
+}
+exports.default = connectionDB;

@@ -1,4 +1,4 @@
-import { DocumentType, getModelForClass, modelOptions, pre, prop, Severity } from "@typegoose/typegoose";
+import { DocumentType, getModelForClass, index, modelOptions, pre, prop, Severity } from "@typegoose/typegoose";
 import argon2 from "argon2";
 import { nanoid } from "nanoid";
 
@@ -13,6 +13,9 @@ import { nanoid } from "nanoid";
 
     return;
 })
+
+@index({ email: 1 })
+
 @modelOptions({
     schemaOptions: {
         timestamps: true
@@ -44,14 +47,14 @@ export class User {
     passwordResetCode: string | null
 
     @prop({ default: false })
-    verified: string;
+    verified: boolean;
 
 
     async validatePassowrd(this: DocumentType<User>, candidatePassword: string) {
         try {
             return await argon2.verify(this.password, candidatePassword)
         } catch (error) {
-            console.log(error)
+            console.log(" [func UserModel ] error", error)
             return false
         }
     }

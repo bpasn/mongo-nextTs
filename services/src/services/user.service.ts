@@ -1,5 +1,13 @@
 import UserModel, { User } from "../models/user.model";
 
-export function createUser(input:Partial<User>){
+export function createUser(input: Partial<User>) {
     return UserModel.create(input)
+}
+
+export const findUserById = (id: string) => {
+    return UserModel.findById(id)
+}
+
+export const findUserByEmail = (email: string) => {
+    return UserModel.findOne({ email })
 }

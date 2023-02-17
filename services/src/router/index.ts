@@ -1,7 +1,7 @@
 import express from 'express';
 import user from './user.route'
-const router =express.Router()
+const route =express.Router()
 
-// router.get('/healthcheck',(_,res) => res.sendStatus(200))
-router.use(user)
-export default router
+route.get('/healthcheck',(_,res) => res.sendStatus(404))
+route.use(user)
+export default route
