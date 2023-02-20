@@ -2,6 +2,14 @@ import { DocumentType, getModelForClass, index, modelOptions, pre, prop, Severit
 import argon2 from "argon2";
 import { nanoid } from "nanoid";
 
+
+export const privateFields = [
+    "password",
+    "__v",
+    "verificationCode",
+    "passwordResetCode",
+    "verified",
+  ];
 @pre<User>("save", async function () {
     if (!this.isModified("password")) {
         return;
@@ -46,15 +54,15 @@ export class User {
     @prop()
     passwordResetCode: string | null
 
-    @prop({ default: false })
-    verified: boolean;
+    // @prop({ default: false })
+    // verified: boolean;
 
 
     async validatePassowrd(this: DocumentType<User>, candidatePassword: string) {
         try {
             return await argon2.verify(this.password, candidatePassword)
         } catch (error) {
-            console.log(" [func UserModel ] error", error)
+            console.log(" [ func UserModel ] error", error)
             return false
         }
     }

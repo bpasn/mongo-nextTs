@@ -11,10 +11,9 @@ const validateResource =
                     query: req.query,
                     params: req.params
                 });
-                console.log('next')
                 next()
-            } catch (error) {
-                return res.status(400).json({ error: error instanceof Error && JSON.parse(error.message) })
+            } catch (error:any) {
+                return res.status(400).json(error.message)
             }
         }
 

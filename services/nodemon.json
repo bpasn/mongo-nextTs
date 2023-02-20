@@ -1,6 +1,7 @@
 {
     "watch": ["src"],
     "ext": ".ts",
+    "JWT_KEY":"secret",
     "ignore": [],
-    "exec": "npx ts-node ./src/index.ts"
+    "exec": "ts-node-dev --respawn --transpile-only src/index.ts"
   }
