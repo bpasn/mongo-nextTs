@@ -1,10 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/next-project/node_modules
-next-project/node_modules
-services/node_modules
-services/request_log
+/node_modules
 /.pnp
 .pnp.js
 
