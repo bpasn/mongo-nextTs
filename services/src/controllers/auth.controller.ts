@@ -23,7 +23,7 @@ export const createSessionHandler = async (
 
         //sign a access token
         const accessToken = signAccessToken(user)
-        console.log("accessToken =>" , accessToken)
+
         //sign arefresh token
         const refreshToken = await signRefreshToken({
             userId: user._id

@@ -20,7 +20,7 @@ app.use(router)
         
 app.listen(config.get('port'), async () => {
    try {
-    await connectionDB()
+   connectionDB()
     console.log("service is running ", config.get("port"))
    } catch (error) {
     console.log(error instanceof Error &&  error.message)

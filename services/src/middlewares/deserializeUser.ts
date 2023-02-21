@@ -10,13 +10,12 @@ const deserilizeUser = async (
     try {
         const accessToken = (req.headers.authorization || "")
             .replace(/^Bearer\s/, "");
-            console.log('accessToken' , accessToken)
         if (!accessToken) return next()
 
         const decoded = verifyJwt(accessToken, "accessTokenPublicKey")
 
         if (decoded) {
-            res.locals.user = decode
+            res.locals.user = decoded
         }
         return next()
     } catch (error) {

@@ -11,7 +11,6 @@ export async function creatrUserHandler(
     res: Response) {
     const body = req.body
     try {
-        console.log(body)
         const user = await createUser(body)
         await sendEmail({
             from: "test@gmail.com",
@@ -22,7 +21,7 @@ export async function creatrUserHandler(
 
         res.status(200).json("User successfully created")
     } catch (error: any) {
-        console.log("EroroUsercontroller => " ,error)
+        console.log("EroroUsercontroller => ", error)
         if (error.code === 11000) {
             return res.status(409).send("Action already exists")
         }
@@ -74,7 +73,7 @@ export async function verifyUserHandler(req: Request<VerifyUserInput>, res: Resp
 
         return res.status(200).json('cound not verify user')
     } catch (error) {
-        console.log("verifyUserHandler error" , error)
+        console.log("verifyUserHandler error", error)
         res.status(500).json(error instanceof Error && JSON.parse(error.message))
     }
 }
@@ -109,7 +108,7 @@ export const forgotPassowrdHandler = async (req: Request<{}, {}, ForgotPasswordI
         return res.status(400).json(message)
 
     } catch (error) {
-        console.log("forgotPassowrdHandler ",error)
+        console.log("forgotPassowrdHandler ", error)
     }
 }
 
@@ -136,16 +135,11 @@ export const resetPasswordHandler = async (req: Request<ResetPasswordInput['para
 
         return res.status(200).json("Successfully updated password")
     } catch (error) {
-        console.log("resetPasswordHandler error " , error)
+        console.log("resetPasswordHandler error ", error)
         res.status(500).json(error instanceof Error && error.message)
     }
 }
 
-export const getCurrentUserHandler = async (_: Request, res: Response) =>{
-    try {
-res.json(res.locals.user)
-    } catch (error) {
-        
-        res.status(500).json(error)
-    }
+export const getCurrentUserHandler = async (_: Request, res: Response) => {
+    res.status(200).json(res.locals.user)
 }

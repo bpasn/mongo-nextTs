@@ -1,4 +1,12 @@
-import { DocumentType, getModelForClass, index, modelOptions, pre, prop, Severity } from "@typegoose/typegoose";
+import {
+    DocumentType,
+    getModelForClass,
+    index,
+    modelOptions,
+    pre,
+    prop,
+    Severity
+} from "@typegoose/typegoose";
 import argon2 from "argon2";
 import { nanoid } from "nanoid";
 
@@ -9,7 +17,7 @@ export const privateFields = [
     "verificationCode",
     "passwordResetCode",
     "verified",
-  ];
+];
 @pre<User>("save", async function () {
     if (!this.isModified("password")) {
         return;
