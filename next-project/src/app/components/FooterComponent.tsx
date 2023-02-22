@@ -4,7 +4,11 @@ type Props = {}
 
 const FooterComponent = (props: Props) => {
   return (
-    <div>FooterComponent</div>
+    <footer className='text-center'>
+      <div style={{margin:'auto',height:'100%'}}>
+      FooterComponent
+      </div>
+    </footer>
   )
 }
 

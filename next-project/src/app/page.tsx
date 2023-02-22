@@ -4,7 +4,7 @@ type Props = {}
 
 const HomePage = (props: Props) => {
   return (
-    <div className="text-4xl ">Home</div>
+    <div className="text-4xl ">Dasboard</div>
   )
 }
 
