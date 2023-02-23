@@ -2,6 +2,7 @@
 
 # dependencies
 /next-project/node_modules
+next-project/.next
 next-project/node_modules
 services/node_modules
 services/request_log
