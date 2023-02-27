@@ -11,13 +11,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { method } = req
-    await connectionDB();
-    switch (method) {
-      case "GET":
-       
-        break;
-    }
+    res.send(process.env.ACCESS_TOKEN_PUBLIC_KEY)
   } catch (error) {
     res.json({
       status:false,

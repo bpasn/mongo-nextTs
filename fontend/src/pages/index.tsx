@@ -5,7 +5,6 @@ import HeaderComponent from './components/HeaderComponent'
 import SideBarComponent from './components/SideBarComponent'
 import LoginScreen from './screens/LoginScreen'
 import { useEffect } from 'react'
-
 export default function Home() {
   const users = useAppSelector(state => state.users)
 
@@ -20,11 +19,16 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <LoginScreen />
-      {/* {!Object.keys(users).length ? <LoginScreen /> : <>
+      <body>
+      <div className="grid-container">
         <HeaderComponent />
         <SideBarComponent />
-      </>} */}
+        <main>
+          Homw
+        </main>
+        <footer>footer</footer>
+      </div>
+      </body>
     </>
   )
 }

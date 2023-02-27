@@ -44,7 +44,7 @@ export default function SideBarComponent(props: Props) {
             <Toolbar />
             <List >
                 {menus.map((item: MenuSideBar, index) => (
-                    <Link href={item.url ?? '#'}>
+                    <Link href={item.url ?? '#'} key={index}>
                         <ListItem key={index} disablePadding sx={{
                             color: "white"
                         }}>

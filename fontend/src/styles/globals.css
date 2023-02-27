@@ -20,13 +20,12 @@ body {
 .grid-container {
   display: grid;
   grid-template-areas:
-    'nav header'
-    'nav main'
-    'nav footer';
-  grid-template-columns: 20rem 1fr;
+    'nav header header'
+    'nav main main'
+    'nav footer footer';
+  grid-template-columns: 20rem 4fr;
   grid-template-rows: 7rem 1fr 7rem;
   height: 100%;
-  padding: 0;
 
 }
 

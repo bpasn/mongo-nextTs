@@ -37,6 +37,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "baseUrl": ".",
     "incremental": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -45,7 +46,8 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/models/user.model.ts", "src/models/user.model.ts", "src/models/user.model.ts.bk"],
+
   "exclude": ["node_modules"]
 }
 
