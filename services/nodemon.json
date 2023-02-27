@@ -3,5 +3,5 @@
     "ext": ".ts",
     "JWT_KEY":"secret",
     "ignore": [],
-    "exec": "ts-node-dev --respawn --transpile-only src/index.ts"
+    "exec": "ts-node-dev --respawn --transpile-only src/index.ts PORT=3301"
   }
