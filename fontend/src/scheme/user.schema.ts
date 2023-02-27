@@ -1,6 +1,6 @@
 import { object, string, TypeOf } from 'zod'
 
- export const createUserSchema = object({
+ const createUserSchema = object({
     body: object({
         firstName: string({
             required_error: "First name is require"

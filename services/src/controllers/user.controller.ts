@@ -143,3 +143,4 @@ export const resetPasswordHandler = async (req: Request<ResetPasswordInput['para
 export const getCurrentUserHandler = async (_: Request, res: Response) => {
     res.status(200).json(res.locals.user)
 }
+

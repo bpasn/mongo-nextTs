@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import axios from 'axios'
+import connectionDB from '@/mongo/config/mongo.config'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
@@ -11,10 +11,11 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    res.json({ name: req.method })
+   console.log(req.query)
   } catch (error) {
-    if (error instanceof Error) {
-      console.log(error.message)
-    }
+    res.json({
+      status:false,
+      message:error instanceof Error && error.message
+    })
   }
 }
