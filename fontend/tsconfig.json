@@ -46,7 +46,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/models/user.model.ts", "src/models/user.model.ts", "src/models/user.model.ts.bk"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/models/user.model.ts", "src/models/user.model.ts", "src/models/user.model.ts.bk", "src/pages/api/middleware.ts.back"],
 
   "exclude": ["node_modules"]
 }

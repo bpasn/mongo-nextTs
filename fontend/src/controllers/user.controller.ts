@@ -3,22 +3,23 @@ import { createUser, findUserByEmail, findUserById } from "@/services/user.servi
 import { nanoid } from "nanoid";
 import config from 'config'
 import { NextApiRequest, NextApiResponse } from "next";
+import ResponseMessage, { IResponseMessage } from "@/interface/response";
+const responseMessage = new ResponseMessage()
 
-
-export async function createUserHandler(body: CreateUserInput , res:NextApiResponse) {
+export async function createUserHandler(body: CreateUserInput, res: NextApiResponse): Promise<IResponseMessage> {
     try {
         const user = await createUser(body)
-        console.log(user);
         if (user) {
-            return res.status(200).json("User successfully created");
+            responseMessage.setResponse({ statusCode: 400, status: false, message: "User not create" }).getReport()
         }
+        responseMessage.setResponse({ statusCode: 400, status: false, message: "User not create" })
     } catch (error: any) {
-        console.log("EroroUsercontroller => ", error)
         if (error.code === 11000) {
-            return res.status(409).json("Action already exists");
+            responseMessage.setResponse({ statusCode: 409, status: false, message: "Action already exists" })
         }
-        return res.status(500).json(error);
+        return { statusCode: 500, status: false, message: "Action already exists" }
     }
+    return responseMessage.getReport()
 }
 
 export async function verifyUserHandler(verify: VerifyUserInput, res: NextApiResponse) {
@@ -94,8 +95,8 @@ export const getCurrentUserHandler = async (_: NextApiRequest, res: NextApiRespo
 
 export const testController = async (_: NextApiRequest, res: NextApiResponse) => {
     try {
-        res.send({eiei:"eiei"})
+        res.send({ eiei: "eiei" })
     } catch (error) {
-       res.status(500).send(error)
+        res.status(500).send(error)
     }
 }

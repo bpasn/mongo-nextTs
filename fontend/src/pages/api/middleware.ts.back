@@ -1,0 +1,37 @@
+import { NextResponse } from "next/server";
+import { verify } from "jsonwebtoken";
+import type { NextRequest } from 'next/server'
+
+const secret = process.env.SECRET || '';
+const protectRoute:string[] = [
+  "/", //Home page,
+  "/dashboard"
+]
+export default function middleware(req: NextRequest) {
+  const cookies:any = req.cookies;
+  const { search, protocol, host } = req.nextUrl
+  console.log({ search, protocol, host })
+  const jwt = cookies.OutsiteJWT;
+  const url = req.url;
+  if (url.includes('/')) {
+    if (jwt === undefined) {
+      return NextResponse.redirect("http://localhost:3000/login");
+    }
+    try {
+      // const decode = verify(jwt,secret);
+      // console.log(decode)
+      // verify(jwt, secret); // <---- ERROR COMES FROM HERE
+      return NextResponse.next();
+    } catch (error) {
+      console.log(error)
+      return NextResponse.redirect("/login");
+    }
+  }
+
+  return NextResponse.next();
+}
+
+// See "Matching Paths" below to learn more
+export const config = {
+  matcher: ['//:path*', '/dashboard/:path*'],
+}

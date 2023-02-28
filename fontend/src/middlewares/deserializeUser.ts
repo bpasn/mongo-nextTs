@@ -7,7 +7,6 @@ export const deserilizeUser = async (
     try {
         const accessToken = (req.headers.get('authorization') || "")
             .replace(/^Bearer\s/, "");
-        console.log("accessToken", accessToken)
         if (!accessToken) return null
 
         const decoded = verifyJwt(accessToken, "accessTokenPublicKey")

@@ -1,14 +1,10 @@
 import { Action, compose, createStore, applyMiddleware, combineReducers, Reducer, AnyAction, Dispatch } from '@reduxjs/toolkit';
 import thunk, { ThunkAction } from 'redux-thunk'
+import { userReducer } from './reducer/userReducer';
 
-declare global {
-    interface Window {
-        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-    }
-}
-const initialState = {
-    users: null
 
+const initialState = <any>{
+    userInfo: null
 };
 
 
@@ -26,12 +22,12 @@ const users = (state: any = {}, action: any) => {
 }
 
 const reducers = combineReducers({
-    users: users
+    userInfo: userReducer
 });
 
 
 
-const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = compose;
 
 
 export const store = createStore(reducers, initialState, composeEnhancers(applyMiddleware(thunk)))

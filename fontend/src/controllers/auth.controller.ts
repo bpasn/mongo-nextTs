@@ -1,4 +1,4 @@
-import { NextApiRequest,NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { signAccessToken, signRefreshToken } from './../services/auth.service';
 import { findUserByEmail } from './../services/user.service';
 import { CreateSessionInput } from '@/scheme/auth.scheme';
@@ -9,7 +9,6 @@ export const createSessionHandler = async (
         const message = "Invalid email or password"
         const { email, password } = body
         const user = await findUserByEmail(email);
-
         if (!user) {
             return res.status(404).json(message)
         }
@@ -27,17 +26,17 @@ export const createSessionHandler = async (
         const refreshToken = await signRefreshToken({
             userId: user._id
         })
-
-        return res.status(200).send({
+        
+        return {
             accessToken,
             refreshToken
-        });
+        }
         //send th
     } catch (error) {
         console.log("ERROR AUTH CONTROLLER ", error instanceof Error && error.message)
         return res.status(500).send({
-            error:"Internal server error",
-            message:error instanceof Error && error.message,
+            error: "Internal server error",
+            message: error instanceof Error && error.message,
             // stack: error instanceof Error && error.stack,
         })
     }

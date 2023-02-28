@@ -3,6 +3,7 @@ export function createUser(input: Partial<User>) {
     return UserModel.create(input)
 }
 
+
 export const findUserById = (id: string) => {
     return UserModel.findById(id)
 }
