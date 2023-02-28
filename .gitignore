@@ -1,6 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+mongo_db/db
+/mongo_db/db
 /fontend/node_modules
 fontend/.next
 fontend/node_modules
