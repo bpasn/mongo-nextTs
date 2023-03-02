@@ -3,16 +3,19 @@ import { createUser, findUserByEmail, findUserById } from "@/services/user.servi
 import { nanoid } from "nanoid";
 import config from 'config'
 import { NextApiRequest, NextApiResponse } from "next";
-import ResponseMessage, { IResponseMessage } from "@/interface/response";
+import ResponseMessage, { IResponseMessage } from "../interface/response";
+import { User } from "@/models/user.model";
 const responseMessage = new ResponseMessage()
 
 export async function createUserHandler(body: CreateUserInput, res: NextApiResponse): Promise<IResponseMessage> {
     try {
         const user = await createUser(body)
+        console.log(user)
         if (user) {
-            responseMessage.setResponse({ statusCode: 400, status: false, message: "User not create" }).getReport()
+            responseMessage.setResponse({ statusCode: 200, status: true, message: "User create successfully", payload: user as User })
+        }else{
+            responseMessage.setResponse({ statusCode: 400, status: false, message: "User not create" })
         }
-        responseMessage.setResponse({ statusCode: 400, status: false, message: "User not create" })
     } catch (error: any) {
         if (error.code === 11000) {
             responseMessage.setResponse({ statusCode: 409, status: false, message: "Action already exists" })
