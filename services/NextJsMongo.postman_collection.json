@@ -1,0 +1,282 @@
+{
+	"info": {
+		"_postman_id": "a00fa7ed-b9c6-4622-b477-3b34cc60b4b2",
+		"name": "NextJsMongo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14730541"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"accessToken\",jsonData.accessToken)",
+									"",
+									"postman.setExvironmentNariable(\"refreshToken\",jsonData.refreshToken)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"\",\n    \"password\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hosting}}/api/session",
+							"host": [
+								"{{hosting}}"
+							],
+							"path": [
+								"api",
+								"session"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hosting}}/api/users/me",
+							"host": [
+								"{{hosting}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\":\"{{$randomFirstName}}\",\r\n  \"lastName\":\"{{$randomLastName}}\",\r\n  \"password\":\"{{password}}\",\r\n  \"passwordConfirmation\":\"{{passwordTwo}}\",\r\n  \"email\":\"{{email}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hosting}}/api/users",
+							"host": [
+								"{{hosting}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hosting}}/api/users/verify/:id/:verificationCode",
+							"host": [
+								"{{hosting}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"verify",
+								":id",
+								":verificationCode"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "63ef19152f0b9ac95278c70d"
+								},
+								{
+									"key": "verificationCode",
+									"value": "WCnc8jBFH2g6P7CWnVrpg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\":\"Jhon\",\r\n  \"lastName\":\"Doe\",\r\n  \"password\":\"P@ssw0rd\",\r\n  \"passwordConfirmation\":\"P@ssw0rd\",\r\n  \"email\":\"jhondoe@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hosting}}/api/users/veriify/:id/:verificationCode",
+							"host": [
+								"{{hosting}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"veriify",
+								":id",
+								":verificationCode"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "63ef19152f0b9ac95278c70d"
+								},
+								{
+									"key": "verificationCode",
+									"value": "WCnc8jBFH2g6P7CWnVrpg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SendEmailTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\":\"Jhon\",\r\n  \"lastName\":\"Doe\",\r\n  \"password\":\"P@ssw0rd\",\r\n  \"passwordConfirmation\":\"P@ssw0rd\",\r\n  \"email\":\"jhondoe@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hosting}}/api/users/veriify/:id/:verificationCode",
+							"host": [
+								"{{hosting}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"veriify",
+								":id",
+								":verificationCode"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "63ef19152f0b9ac95278c70d"
+								},
+								{
+									"key": "verificationCode",
+									"value": "WCnc8jBFH2g6P7CWnVrpg"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "hosting",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "bearer",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjNmZhMzc5MC02Y2YwLTQyNzctYjIzZi02ZWMzOTg4N2FkNjUiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlckBleGFtcGxlLmNvbSIsImp0aSI6IjVmMjQ1YTg3LTYyYWEtNDBmYS05OTc2LTExZmRlMWI3ZDIxMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVTRVIiLCJleHAiOjE2NzY0NzkzOTMsImlzcyI6Imh0dHBzOi9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjUwMDEifQ.L6lvIFFSPG-Tly8bF2Tot7yZkJZZ9G27kJjfhhlK7yI"
+		}
+	]
+}
