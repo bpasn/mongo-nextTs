@@ -4,11 +4,13 @@
 //     message?: string,
 //     payload?: any
 // }
-export type IResponseMessage = {
+export interface IResponseMessage {
     status: boolean,
     message: string,
-    statusCode: number
+    statusCode: number,
+    payload?: any
 }
+
 export default class ResponseMessage {
     public status?: boolean;
     public statusCode?: number;
@@ -16,20 +18,20 @@ export default class ResponseMessage {
     public payload?: any;
 
     constructor(IR?: IResponseMessage) {
-        this.status = IR.status;
-        this.statusCode = IR.statusCode;
-        this.message = IR.message;
-        this.payload = IR.payload;
+        this.status = IR?.status;
+        this.statusCode = IR?.statusCode;
+        this.message = IR?.message;
+        this.payload = IR?.payload;
     }
 
     public getMessage(): string {
-        return this.message;
+        return this.message!;
     }
-    public getStatusCode(): number {
-        return this.message;
+    public getStatusCode(): boolean {
+        return this.status!;
     }
     public getStatus(): number {
-        return this.message;
+        return this.statusCode!;
     }
 
     public setResponse(t: IResponseMessage) {
@@ -55,9 +57,9 @@ export default class ResponseMessage {
 
     public error(): IResponseMessage {
         return {
-            status: this.status,
-            statusCode: this.statusCode,
-            message: this.message,
+            status: this.status!,
+            statusCode: this.statusCode!,
+            message: this.message!,
         }
     }
 

@@ -3,31 +3,24 @@ import thunk, { ThunkAction } from 'redux-thunk'
 import { userReducer } from './reducer/userReducer';
 
 
-const initialState = <any>{
-    userInfo: null
+const initialState = {
+    userSignin: {
+        userInfo: null
+    }
 };
 
-
-const users = (state: any = {}, action: any) => {
-    switch (action.type) {
-        case "ACTION_REQUEST":
-            return { loading: true }
-        case "ACTION_SUCCESS":
-            return { ...action.payload, loading: false }
-        case "ACTION_FAIL":
-            return { ...action.payload, loading: false }
-        default:
-            return { ...state };
-    }
-}
-
 const reducers = combineReducers({
-    userInfo: userReducer
+    userSignin: userReducer
 });
 
 
+declare global {
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
 
-const composeEnhancers = compose;
+const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
 export const store = createStore(reducers, initialState, composeEnhancers(applyMiddleware(thunk)))
